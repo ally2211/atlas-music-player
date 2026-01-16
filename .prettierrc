@@ -1,3 +1,4 @@
+// .prettierrc
 {
-  "plugins": []
+  "plugins": ["prettier-plugin-tailwindcss"]
 }
