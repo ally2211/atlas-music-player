@@ -17,4 +17,4 @@
 
 - `npm run dev`: Starts dev server with Hot Module Reloading on port 5173. Anytime a file changes, the changes will automatocally be reflected in the browser
 - `npm run lint`: Run the lint checker with eslint to check for known linting issues
-- `npm run build`: Outputs the production files into the `dist` folder
+- `npm run build`: Outputs the production files into the `dist` folder.
