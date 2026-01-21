@@ -3,7 +3,7 @@ import React from 'react';
 const iconClass = "w-6 h-6 text-warmWhite hover:text-yellow-400 transition";
 
 const PlayControls = () => (
-    <div className="flex justify-between gap-4 mt-4" style={{ width: '400px' }}>
+    <div className="flex justify-between gap-4 mt-4 w-full">
         {/* Speed */}
         <button className="p-2">
             <svg className={iconClass} viewBox="0 0 24 24" fill="currentColor">

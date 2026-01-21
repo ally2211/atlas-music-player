@@ -2,7 +2,7 @@ import React from 'react';
 import volumeIcon from '../assets/VolumeIcon.svg';
 
 const VolumeControls = ({ volume, setVolume }) => (
-    <div className="mt-4 w-[400px]">
+    <div className="mt-4 w-full">
         <div className="flex items-center gap-3">
             <svg
                 xmlns="http://www.w3.org/2000/svg"
