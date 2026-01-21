@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import CoverArt from './CoverArt';
-import SongTitle from './SongTitle';
-import PlayControls from './PlayControls';
-import VolumeControls from './VolumeControls';
+import CurrentlyPlaying from './CurrentlyPlaying';
 import PlayListItem from './PlayListItem';
-
+import LoadingSkeleton from './LoadingSkeleton';
 
 const MusicPlayer = () => {
   const [volume, setVolume] = useState(50);
@@ -31,10 +28,13 @@ const MusicPlayer = () => {
       {/* Player Column */}
       <div className="sm:w-1/2 ">
         <div className="w-full">
-          <CoverArt />
-          <SongTitle title="My Song" author="Artist Name" className="mt-6 font-inter font-bold text-2xl leading-none tracking-normal" />
-          <PlayControls />
-          <VolumeControls volume={volume} setVolume={setVolume} />
+          <CurrentlyPlaying 
+            title={playlist[0]?.title}
+            artist={playlist[0]?.artist}
+            length={playlist[0]?.length}
+            volume={volume}
+            setVolume={setVolume}
+          />
         </div>
       </div>
 
