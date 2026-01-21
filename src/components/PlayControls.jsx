@@ -1,6 +1,6 @@
 import React from 'react';
 
-const iconClass = "w-6 h-6 text-warmWhite hover:text-yellow-400 transition";
+const iconClass = "w-6 h-6 text-softBlack dark:text-warmWhite hover:text-yellow-400 transition";
 
 const PlayControls = () => (
     <div className="flex justify-between gap-4 mt-4 w-full">
@@ -22,7 +22,7 @@ const PlayControls = () => (
         {/* Play - Bigger */}
         <button className="p-2">
             <svg
-                className="w-10 h-10 text-warmWhite hover:text-yellow-400 transition"
+                className="w-10 h-10 text-softBlack dark:text-warmWhite hover:text-yellow-400 transition"
                 viewBox="0 0 48 48"
                 fill="currentColor"
             >

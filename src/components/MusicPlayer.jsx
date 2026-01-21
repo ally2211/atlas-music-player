@@ -38,7 +38,7 @@ const MusicPlayer = () => {
 
       {/* Playlist Column */}
       <div className="w-full md:w-1/2 md:shrink-0">
-        <h2 className="text-xl font-inter font-medium text-warmYellow mb-2">Playlist</h2>
+        <h2 className="text-xl font-inter font-medium text-warmYellow dark:text-warmYellow mb-2">Playlist</h2>
         <PlayListItem
           title="Painted in Blue"
           artist="Soul Canvas"

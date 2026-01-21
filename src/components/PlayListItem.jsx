@@ -14,7 +14,8 @@ const PlayListItem = ({ title, artist, length, loading = false }) => {
     return (
         <div
             className="border border-warmYellow rounded-lg p-3 transition duration-200
-               hover:bg-warmYellow hover:text-darkBlue cursor-pointer"
+               hover:bg-warmYellow hover:text-darkBlue cursor-pointer
+               text-softBlack dark:text-warmWhite"
         >
             <div className="flex justify-between items-center">
                 <div className="font-inter font-medium text-base leading-none tracking-normal">

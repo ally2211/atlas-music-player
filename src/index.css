@@ -17,3 +17,21 @@
     /* Box Shadow */
     --shadow-custom: 0 8px 24px rgba(0, 0, 0, 0.15);
 }
+
+/* Global dark mode background and text */
+html {
+    background-color: #fdfdfd;
+    color: #1a1a1a;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+html.dark {
+    background-color: #0a1f3d;
+    color: #FAFAFA;
+}
+
+body {
+    background-color: inherit;
+    color: inherit;
+    min-height: 100vh;
+}
