@@ -6,33 +6,36 @@ import VolumeControls from './VolumeControls';
 const CurrentlyPlaying = ({
     title,
     artist,
-    coverUrl,
+    cover,
+    loading = false,
     volume,
     setVolume,
-    onPlay,
-    onPause,
+    onPlayPause,
     onNext,
     onPrevious,
     onShuffle,
     onSpeedChange,
-    isPlaying
+    isPlaying,
+    song,
+    isShuffleOn = false
 }) => {
     return (
         <div className="w-full">
-            <CoverArt coverUrl={coverUrl} />
+            <CoverArt cover={cover} loading={loading} />
             <SongTitle
-                title={title || "My Song"}
-                author={artist || "Artist Name"}
+                title={title || "No song selected"}
+                author={artist || "Unknown Artist"}
                 className="mt-6 font-inter font-bold text-2xl leading-none tracking-normal"
             />
             <PlayControls
-                onPlay={onPlay}
-                onPause={onPause}
+                song={song}
+                onPlayPause={onPlayPause}
                 onNext={onNext}
                 onPrevious={onPrevious}
                 onShuffle={onShuffle}
                 onSpeedChange={onSpeedChange}
                 isPlaying={isPlaying}
+                isShuffleOn={isShuffleOn}
             />
             <VolumeControls volume={volume} setVolume={setVolume} />
         </div>

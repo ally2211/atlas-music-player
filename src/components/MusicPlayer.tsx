@@ -1,8 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import CoverArt from './CoverArt';
-import SongTitle from './SongTitle';
-import PlayControls from './PlayControls';
-import VolumeControls from './VolumeControls';
+import CurrentlyPlaying from './CurrentlyPlaying';
 import PlayListItem from './PlayListItem';
 import LoadingSkeleton from './LoadingSkeleton';
 
@@ -191,29 +188,22 @@ const MusicPlayer: React.FC = () => {
 
             {/* Player Column */}
             <div className="sm:w-1/2 shrink-0">
-                <div className="w-full">
-                    <CoverArt
-                        cover={currentSong?.cover || ""}
-                        loading={!currentSong}
-                    />
-                    <SongTitle
-                        title={currentSong?.title || "No song selected"}
-                        author={currentSong?.artist || "Unknown Artist"}
-                        className="mt-6 font-inter font-bold text-2xl leading-none tracking-normal"
-                    />
-                    <PlayControls
-                        song={currentSong?.song || ""}
-                        onPrevious={handlePrevious}
-                        onNext={handleNext}
-                        onShuffle={handleShuffle}
-                        isShuffleOn={isShuffleOn}
-                        volume={volume}
-                        isPlaying={isPlaying}
-                        onPlayPause={handlePlayPause}
-                        onSpeedChange={setPlaybackSpeed}
-                    />
-                    <VolumeControls volume={volume} setVolume={setVolume} />
-                </div>
+                <CurrentlyPlaying
+                    title={currentSong?.title}
+                    artist={currentSong?.artist}
+                    cover={currentSong?.cover}
+                    loading={!currentSong}
+                    volume={volume}
+                    setVolume={setVolume}
+                    onPlayPause={handlePlayPause}
+                    onPrevious={handlePrevious}
+                    onNext={handleNext}
+                    onShuffle={handleShuffle}
+                    onSpeedChange={setPlaybackSpeed}
+                    isPlaying={isPlaying}
+                    song={currentSong?.song}
+                    isShuffleOn={isShuffleOn}
+                />
             </div>
 
             {/* Playlist Column */}
@@ -226,7 +216,7 @@ const MusicPlayer: React.FC = () => {
                             title={song.title}
                             artist={song.artist}
                             length={formatDuration(song.duration)}
-                            className="hover:bg-warmYellow hover:text-softBlack transition rounded-xl p-2"
+                            className="mb-2"
                             onClick={() => handleSongClick(song)}
                             isSelected={currentSong?.id === song.id}
                         />

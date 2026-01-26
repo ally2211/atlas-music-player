@@ -31,10 +31,9 @@ const PlayListItem = ({ title, artist, length, loading = false, className = "", 
 
     return (
         <div
-            className={`border border-warmYellow rounded-lg p-3 transition duration-200
-               hover:bg-warmYellow hover:text-darkBlue cursor-pointer ${className}
-               ${isSelected ? 'bg-warmYellow text-darkBlue' : ''}`}
-            style={{ cursor: 'pointer !important' }}
+            className={`border border-warmYellow rounded-lg p-3 transition duration-200 cursor-pointer
+               ${isSelected ? 'bg-warmYellow text-darkBlue' : 'bg-transparent text-softBlack dark:text-warmWhite'}
+               ${className} hover:bg-warmYellow hover:text-darkBlue`}
             onClick={handleClick}
         >
             <div className="flex justify-between items-center">

@@ -4,7 +4,7 @@ interface VolumeControlsProps {
 }
 
 const VolumeControls = ({ volume, setVolume }: VolumeControlsProps) => (
-    <div className="mt-4 w-full">
+    <div className="mt-4 w-full max-w-[400px]">
         <div className="flex items-center gap-3">
             <svg
                 xmlns="http://www.w3.org/2000/svg"
