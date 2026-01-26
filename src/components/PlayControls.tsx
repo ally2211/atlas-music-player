@@ -16,6 +16,7 @@ interface PlayControlsProps {
 
 const iconClass = "w-6 h-6 text-black dark:text-warmWhite hover:text-yellow-400 transition";
 
+
 const PlayControls = ({
     song,
     onPrevious,
@@ -101,7 +102,7 @@ const PlayControls = ({
                 }}
             >
                 <svg
-                    className="w-10 h-10 text-black dark:text-warmWhite hover:text-yellow-400 transition"
+                    className="w-10 h-10 text-black dark:!text-warmWhite hover:text-yellow-400 transition"
                     viewBox="0 0 48 48"
                     fill="currentColor"
                 >

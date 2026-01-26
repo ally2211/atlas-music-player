@@ -216,7 +216,7 @@ const MusicPlayer: React.FC = () => {
                             title={song.title}
                             artist={song.artist}
                             length={formatDuration(song.duration)}
-                            className="mb-2"
+                            className="hover:bg-warmYellow hover:text-softBlack transition rounded-xl p-2"
                             onClick={() => handleSongClick(song)}
                             isSelected={currentSong?.id === song.id}
                         />
