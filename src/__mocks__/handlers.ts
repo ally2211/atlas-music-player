@@ -13,16 +13,37 @@ interface Song {
 const fakePlaylist: Song[] = [
     { id: '1', title: 'Fake Song 1', artist: 'Fake Artist 1', genre: 'Pop', duration: 180 },
     { id: '2', title: 'Fake Song 2', artist: 'Fake Artist 2', genre: 'Rock', duration: 200 },
+    { id: '3', title: 'Fake Song 3', artist: 'Fake Artist 3', genre: 'Jazz', duration: 240 },
 ];
 
-const fakeSongDetail: Song = {
-    id: '1',
-    title: 'Fake Song 1',
-    artist: 'Fake Artist 1',
-    genre: 'Pop',
-    duration: 180,
-    song: '/songs/fake-song-1.mp3',
-    cover: '/covers/fake-cover-1.jpg',
+const fakeSongDetails: Record<string, Song> = {
+    '1': {
+        id: '1',
+        title: 'Fake Song 1',
+        artist: 'Fake Artist 1',
+        genre: 'Pop',
+        duration: 180,
+        song: '/songs/fake-song-1.mp3',
+        cover: '/covers/fake-cover-1.jpg',
+    },
+    '2': {
+        id: '2',
+        title: 'Fake Song 2',
+        artist: 'Fake Artist 2',
+        genre: 'Rock',
+        duration: 200,
+        song: '/songs/fake-song-2.mp3',
+        cover: '/covers/fake-cover-2.jpg',
+    },
+    '3': {
+        id: '3',
+        title: 'Fake Song 3',
+        artist: 'Fake Artist 3',
+        genre: 'Jazz',
+        duration: 240,
+        song: '/songs/fake-song-3.mp3',
+        cover: '/covers/fake-cover-3.jpg',
+    },
 };
 
 export const handlers = [
@@ -32,7 +53,7 @@ export const handlers = [
 
     http.get('/api/v1/songs/:id', ({ params }) => {
         const { id } = params;
-        const song = fakePlaylist.find((s) => s.id === id) || fakeSongDetail;
+        const song = fakeSongDetails[id as string] || fakeSongDetails['1'];
         return HttpResponse.json(song, { status: 200 });
     }),
 ];

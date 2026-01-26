@@ -11,9 +11,18 @@ module.exports = {
     setupFiles: ['<rootDir>/src/setupPolyfills.ts'],
     setupFilesAfterEnv: ['<rootDir>/src/setupTests.ts'],
 
-    // Provide fetch API via jsdom or Node.js
+    // Enable fetch in jsdom environment
     testEnvironmentOptions: {
         customExportConditions: [''],
+    },
+
+    // Provide global fetch from Node.js (Node 18+)
+    globals: {
+        'ts-jest': {
+            tsconfig: {
+                lib: ['ES2020', 'DOM'],
+            },
+        },
     },
 
     moduleNameMapper: {
