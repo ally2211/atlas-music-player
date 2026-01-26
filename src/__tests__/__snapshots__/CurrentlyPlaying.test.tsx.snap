@@ -340,6 +340,7 @@ exports[`CurrentlyPlaying snapshots renders while loading 1`] = `
       <img
         alt="Cover Art"
         class="w-full h-full object-cover"
+        src="test-file-stub"
       />
     </div>
     <div

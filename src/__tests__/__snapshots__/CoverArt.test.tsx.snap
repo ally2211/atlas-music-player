@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
-exports[`CoverArt snapshot tests renders loading state 1`] = `
+exports[`CoverArt renders loading state 1`] = `
 <DocumentFragment>
   <div
     class="w-full max-w-[400px] aspect-square"
@@ -8,12 +8,13 @@ exports[`CoverArt snapshot tests renders loading state 1`] = `
     <img
       alt="Cover Art"
       class="w-full h-full object-cover"
+      src="test-file-stub"
     />
   </div>
 </DocumentFragment>
 `;
 
-exports[`CoverArt snapshot tests renders normal state when not loading 1`] = `
+exports[`CoverArt renders non-loading state 1`] = `
 <DocumentFragment>
   <div
     class="w-full max-w-[400px] aspect-square"

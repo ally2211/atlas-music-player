@@ -1,7 +1,7 @@
 import placeholder from '../assets/placeholder.svg';
 
 interface CoverArtProps {
-    cover: string;
+    cover?: string;
     loading: boolean;
     onClick?: () => void;
 }
