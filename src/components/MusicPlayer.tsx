@@ -190,7 +190,7 @@ const MusicPlayer: React.FC = () => {
             />
 
             {/* Player Column */}
-            <div className="sm:w-1/2">
+            <div className="sm:w-1/2 shrink-0">
                 <div className="w-full">
                     <CoverArt
                         cover={currentSong?.cover || ""}

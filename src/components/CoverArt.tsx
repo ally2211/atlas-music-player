@@ -9,14 +9,14 @@ interface CoverArtProps {
 const CoverArt = ({ cover, loading, onClick }: CoverArtProps) => {
     if (loading) {
         return (
-            <div style={{ width: '400px', height: '400px' }} onClick={onClick}>
-                <img src={placeholder} alt="Cover Art" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            <div className="w-full max-w-[400px] aspect-square" onClick={onClick}>
+                <img src={placeholder} alt="Cover Art" className="w-full h-full object-cover" />
             </div>
         );
     }
     return (
-        <div style={{ width: '400px', height: '400px' }} onClick={onClick}>
-            <img src={cover} alt="Cover Art" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+        <div className="w-full max-w-[400px] aspect-square" onClick={onClick}>
+            <img src={cover} alt="Cover Art" className="w-full h-full object-cover" />
         </div>
     );
 };

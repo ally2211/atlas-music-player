@@ -1,9 +1,9 @@
 import React from 'react';
 
-const PlayListItem = ({ 
-  title, 
-  artist, 
-  length, 
+const PlayListItem = ({
+  title,
+  artist,
+  length,
   loading = false,
   className = "",
   onClick

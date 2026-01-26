@@ -1,4 +1,10 @@
-const SongTitle = ({ title, author, className = "" }) => (
+interface SongTitleProps {
+    title: string;
+    author: string;
+    className?: string;
+}
+
+const SongTitle = ({ title, author, className = "" }: SongTitleProps) => (
     <div className={`space-y-1 ${className}`}>
         <div className="font-inter font-bold text-2xl leading-none tracking-normal text-softBlack dark:text-warmWhite">
             {title}
