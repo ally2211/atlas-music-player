@@ -8,7 +8,13 @@ module.exports = {
 
     moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
 
+    setupFiles: ['<rootDir>/src/setupPolyfills.ts'],
     setupFilesAfterEnv: ['<rootDir>/src/setupTests.ts'],
+
+    // Provide fetch API via jsdom or Node.js
+    testEnvironmentOptions: {
+        customExportConditions: [''],
+    },
 
     moduleNameMapper: {
         '\\.(css|less|scss|sass)$': 'identity-obj-proxy',

@@ -1,4 +1,4 @@
-import { http } from 'msw';
+import { http, HttpResponse } from 'msw';
 
 interface Song {
     id: string;
@@ -27,12 +27,12 @@ const fakeSongDetail: Song = {
 
 export const handlers = [
     http.get('/api/v1/playlist', () => {
-        return Response.json(fakePlaylist, { status: 200 });
+        return HttpResponse.json(fakePlaylist, { status: 200 });
     }),
 
     http.get('/api/v1/songs/:id', ({ params }) => {
         const { id } = params;
         const song = fakePlaylist.find((s) => s.id === id) || fakeSongDetail;
-        return Response.json(song, { status: 200 });
+        return HttpResponse.json(song, { status: 200 });
     }),
 ];
