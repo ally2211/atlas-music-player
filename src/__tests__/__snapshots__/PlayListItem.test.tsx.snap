@@ -1,0 +1,91 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`PlayListItem snapshots renders default item 1`] = `
+<DocumentFragment>
+  <div
+    class="border border-warmYellow rounded-lg p-3 transition duration-200 cursor-pointer
+               bg-transparent text-softBlack dark:text-warmWhite
+                hover:bg-warmYellow hover:text-darkBlue"
+  >
+    <div
+      class="flex justify-between items-center"
+    >
+      <div
+        class="font-inter font-medium text-base leading-none tracking-normal"
+      >
+        Song Title
+      </div>
+      <div
+        class="text-sm opacity-70"
+      >
+        3:45
+      </div>
+    </div>
+    <div
+      class="text-sm opacity-60"
+    >
+      Artist Name
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`PlayListItem snapshots renders selected item 1`] = `
+<DocumentFragment>
+  <div
+    class="border border-warmYellow rounded-lg p-3 transition duration-200 cursor-pointer
+               bg-warmYellow text-darkBlue
+                hover:bg-warmYellow hover:text-darkBlue"
+  >
+    <div
+      class="flex justify-between items-center"
+    >
+      <div
+        class="font-inter font-medium text-base leading-none tracking-normal"
+      >
+        Song Title
+      </div>
+      <div
+        class="text-sm opacity-70"
+      >
+        3:45
+      </div>
+    </div>
+    <div
+      class="text-sm opacity-60"
+    >
+      Artist Name
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`PlayListItem snapshots renders with custom className 1`] = `
+<DocumentFragment>
+  <div
+    class="border border-warmYellow rounded-lg p-3 transition duration-200 cursor-pointer
+               bg-transparent text-softBlack dark:text-warmWhite
+               bg-warmYellow text-black hover:bg-warmYellow hover:text-darkBlue"
+  >
+    <div
+      class="flex justify-between items-center"
+    >
+      <div
+        class="font-inter font-medium text-base leading-none tracking-normal"
+      >
+        Song Title
+      </div>
+      <div
+        class="text-sm opacity-70"
+      >
+        3:45
+      </div>
+    </div>
+    <div
+      class="text-sm opacity-60"
+    >
+      Artist Name
+    </div>
+  </div>
+</DocumentFragment>
+`;

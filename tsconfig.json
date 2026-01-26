@@ -2,6 +2,13 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
+      "jsx": [
+        "./node_modules/react/jsx-runtime"
+      ],
+      "types": [
+        "jest",
+        "node"
+      ],
       "@/*": [
         "./src/*"
       ]

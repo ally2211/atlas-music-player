@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`SongTitle snapshot tests renders default title and author 1`] = `
+<DocumentFragment>
+  <div
+    class="space-y-1 "
+  >
+    <div
+      class="font-inter font-bold text-2xl leading-none tracking-normal text-softBlack dark:text-warmWhite"
+    >
+      Test Song
+    </div>
+    <div
+      class="text-sm opacity-70 font-inter text-softBlack dark:text-warmWhite"
+    >
+      Test Artist
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`SongTitle snapshot tests renders long title and author 1`] = `
+<DocumentFragment>
+  <div
+    class="space-y-1 "
+  >
+    <div
+      class="font-inter font-bold text-2xl leading-none tracking-normal text-softBlack dark:text-warmWhite"
+    >
+      This is a very long song title that might wrap in the UI
+    </div>
+    <div
+      class="text-sm opacity-70 font-inter text-softBlack dark:text-warmWhite"
+    >
+      An extremely long artist name that could break layout
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`SongTitle snapshot tests renders with additional className 1`] = `
+<DocumentFragment>
+  <div
+    class="space-y-1 text-warmYellow font-bold"
+  >
+    <div
+      class="font-inter font-bold text-2xl leading-none tracking-normal text-softBlack dark:text-warmWhite"
+    >
+      Test Song
+    </div>
+    <div
+      class="text-sm opacity-70 font-inter text-softBlack dark:text-warmWhite"
+    >
+      Test Artist
+    </div>
+  </div>
+</DocumentFragment>
+`;

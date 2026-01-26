@@ -1,0 +1,94 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`VolumeControl snapshot tests renders default volume (50) 1`] = `
+<DocumentFragment>
+  <div
+    class="mt-4 w-full max-w-[400px]"
+  >
+    <div
+      class="flex items-center gap-3"
+    >
+      <svg
+        class="w-6 h-6 text-softBlack dark:text-warmWhite hover:text-yellow-400 transition"
+        fill="currentColor"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M3 10v4h4l5 5V5L7 10H3zm13.5 2c0-1.77-.77-3.29-2-4.3v8.59c1.23-1.01 2-2.53 2-4.29zM14 3.23v2.06c3.39 1.05 6 4.15 6 7.71s-2.61 6.66-6 7.71v2.06c4.45-1.17 8-5.28 8-9.77s-3.55-8.6-8-9.77z"
+        />
+      </svg>
+      <input
+        aria-label="Volume control"
+        class="w-full"
+        max="100"
+        min="0"
+        type="range"
+        value="50"
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`VolumeControl snapshot tests renders maximum volume (100) 1`] = `
+<DocumentFragment>
+  <div
+    class="mt-4 w-full max-w-[400px]"
+  >
+    <div
+      class="flex items-center gap-3"
+    >
+      <svg
+        class="w-6 h-6 text-softBlack dark:text-warmWhite hover:text-yellow-400 transition"
+        fill="currentColor"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M3 10v4h4l5 5V5L7 10H3zm13.5 2c0-1.77-.77-3.29-2-4.3v8.59c1.23-1.01 2-2.53 2-4.29zM14 3.23v2.06c3.39 1.05 6 4.15 6 7.71s-2.61 6.66-6 7.71v2.06c4.45-1.17 8-5.28 8-9.77s-3.55-8.6-8-9.77z"
+        />
+      </svg>
+      <input
+        aria-label="Volume control"
+        class="w-full"
+        max="100"
+        min="0"
+        type="range"
+        value="100"
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`VolumeControl snapshot tests renders minimum volume (0) 1`] = `
+<DocumentFragment>
+  <div
+    class="mt-4 w-full max-w-[400px]"
+  >
+    <div
+      class="flex items-center gap-3"
+    >
+      <svg
+        class="w-6 h-6 text-softBlack dark:text-warmWhite hover:text-yellow-400 transition"
+        fill="currentColor"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M3 10v4h4l5 5V5L7 10H3zm13.5 2c0-1.77-.77-3.29-2-4.3v8.59c1.23-1.01 2-2.53 2-4.29zM14 3.23v2.06c3.39 1.05 6 4.15 6 7.71s-2.61 6.66-6 7.71v2.06c4.45-1.17 8-5.28 8-9.77s-3.55-8.6-8-9.77z"
+        />
+      </svg>
+      <input
+        aria-label="Volume control"
+        class="w-full"
+        max="100"
+        min="0"
+        type="range"
+        value="0"
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
