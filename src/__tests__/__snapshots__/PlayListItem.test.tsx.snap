@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`PlayListItem snapshots renders default item 1`] = `
+exports[`PlayListItem snapshots > renders default item 1`] = `
 <DocumentFragment>
   <div
     class="border border-warmYellow rounded-lg p-3 transition duration-200 cursor-pointer
@@ -30,7 +30,7 @@ exports[`PlayListItem snapshots renders default item 1`] = `
 </DocumentFragment>
 `;
 
-exports[`PlayListItem snapshots renders selected item 1`] = `
+exports[`PlayListItem snapshots > renders selected item 1`] = `
 <DocumentFragment>
   <div
     class="border border-warmYellow rounded-lg p-3 transition duration-200 cursor-pointer
@@ -60,7 +60,7 @@ exports[`PlayListItem snapshots renders selected item 1`] = `
 </DocumentFragment>
 `;
 
-exports[`PlayListItem snapshots renders with custom className 1`] = `
+exports[`PlayListItem snapshots > renders with custom className 1`] = `
 <DocumentFragment>
   <div
     class="border border-warmYellow rounded-lg p-3 transition duration-200 cursor-pointer

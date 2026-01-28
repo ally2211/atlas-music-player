@@ -1,4 +1,5 @@
 import { render } from '@testing-library/react';
+import { vi } from 'vitest';
 import CurrentlyPlaying from '../components/CurrentlyPlaying';
 
 describe('CurrentlyPlaying snapshots', () => {
@@ -7,12 +8,12 @@ describe('CurrentlyPlaying snapshots', () => {
         artist: 'Test Artist',
         cover: '/cover.jpg',
         volume: 50,
-        setVolume: jest.fn(),
-        onPlayPause: jest.fn(),
-        onPrevious: jest.fn(),
-        onNext: jest.fn(),
-        onShuffle: jest.fn(),
-        onSpeedChange: jest.fn(),
+        setVolume: vi.fn(),
+        onPlayPause: vi.fn(),
+        onPrevious: vi.fn(),
+        onNext: vi.fn(),
+        onShuffle: vi.fn(),
+        onSpeedChange: vi.fn(),
         isPlaying: false,
         isShuffleOn: false,
         loading: false,
@@ -63,7 +64,7 @@ describe('CurrentlyPlaying snapshots', () => {
         const { asFragment } = render(
             <CurrentlyPlaying
                 {...baseProps}
-                onSpeedChange={jest.fn()}
+                onSpeedChange={vi.fn()}
             />
         );
         expect(asFragment()).toMatchSnapshot();

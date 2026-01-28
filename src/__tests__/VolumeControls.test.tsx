@@ -1,8 +1,9 @@
 import { render } from '@testing-library/react';
+import { vi } from 'vitest';
 import VolumeControl from '../components/VolumeControls';
 
 describe('VolumeControl snapshot tests', () => {
-    const mockSetVolume = jest.fn();
+    const mockSetVolume = vi.fn();
 
     it('renders default volume (50)', () => {
         const { asFragment } = render(

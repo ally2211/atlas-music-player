@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`SongTitle snapshot tests renders default title and author 1`] = `
+exports[`SongTitle snapshot tests > renders default title and author 1`] = `
 <DocumentFragment>
   <div
     class="space-y-1 "
@@ -19,7 +19,7 @@ exports[`SongTitle snapshot tests renders default title and author 1`] = `
 </DocumentFragment>
 `;
 
-exports[`SongTitle snapshot tests renders long title and author 1`] = `
+exports[`SongTitle snapshot tests > renders long title and author 1`] = `
 <DocumentFragment>
   <div
     class="space-y-1 "
@@ -38,7 +38,7 @@ exports[`SongTitle snapshot tests renders long title and author 1`] = `
 </DocumentFragment>
 `;
 
-exports[`SongTitle snapshot tests renders with additional className 1`] = `
+exports[`SongTitle snapshot tests > renders with additional className 1`] = `
 <DocumentFragment>
   <div
     class="space-y-1 text-warmYellow font-bold"

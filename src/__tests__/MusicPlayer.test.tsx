@@ -1,10 +1,11 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { vi } from 'vitest';
 import MusicPlayer from '../components/MusicPlayer';
 
 // Mock HTMLAudioElement methods
-const mockPlay = jest.fn().mockResolvedValue(undefined);
-const mockPause = jest.fn();
-const mockSetProperty = jest.fn();
+const mockPlay = vi.fn().mockResolvedValue(undefined);
+const mockPause = vi.fn();
+const mockSetProperty = vi.fn();
 
 Object.defineProperty(HTMLAudioElement.prototype, 'play', {
     writable: true,

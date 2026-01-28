@@ -1,4 +1,5 @@
 import { render } from '@testing-library/react';
+import { vi } from 'vitest';
 import PlayListItem from '../components/PlayListItem';
 
 describe('PlayListItem snapshots', () => {
@@ -6,7 +7,7 @@ describe('PlayListItem snapshots', () => {
         title: 'Song Title',
         artist: 'Artist Name',
         length: '3:45',
-        onClick: jest.fn(),
+        onClick: vi.fn(),
     };
 
     it('renders default item', () => {

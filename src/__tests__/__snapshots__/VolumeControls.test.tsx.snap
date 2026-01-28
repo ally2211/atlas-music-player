@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`VolumeControl snapshot tests renders default volume (50) 1`] = `
+exports[`VolumeControl snapshot tests > renders default volume (50) 1`] = `
 <DocumentFragment>
   <div
     class="mt-4 w-full max-w-[400px]"
@@ -31,7 +31,7 @@ exports[`VolumeControl snapshot tests renders default volume (50) 1`] = `
 </DocumentFragment>
 `;
 
-exports[`VolumeControl snapshot tests renders maximum volume (100) 1`] = `
+exports[`VolumeControl snapshot tests > renders maximum volume (100) 1`] = `
 <DocumentFragment>
   <div
     class="mt-4 w-full max-w-[400px]"
@@ -62,7 +62,7 @@ exports[`VolumeControl snapshot tests renders maximum volume (100) 1`] = `
 </DocumentFragment>
 `;
 
-exports[`VolumeControl snapshot tests renders minimum volume (0) 1`] = `
+exports[`VolumeControl snapshot tests > renders minimum volume (0) 1`] = `
 <DocumentFragment>
   <div
     class="mt-4 w-full max-w-[400px]"
