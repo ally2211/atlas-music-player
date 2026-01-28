@@ -3,7 +3,16 @@ module.exports = {
     testEnvironment: 'jsdom',
 
     transform: {
-        '^.+\\.(ts|tsx)$': 'ts-jest',
+        '^.+\\.(ts|tsx)$': ['ts-jest', {
+            tsconfig: {
+                lib: ['ES2020', 'DOM'],
+            },
+        }],
+        // Transform ES modules from MSW dependencies
+        'node_modules/(msw|@mswjs|until-async)/.*\\.js$': ['ts-jest', {
+            tsconfig: false,
+            useESM: false,
+        }],
     },
 
     moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
@@ -16,14 +25,10 @@ module.exports = {
         customExportConditions: [''],
     },
 
-    // Provide global fetch from Node.js (Node 18+)
-    globals: {
-        'ts-jest': {
-            tsconfig: {
-                lib: ['ES2020', 'DOM'],
-            },
-        },
-    },
+    // Don't ignore MSW and its dependencies - transform them
+    transformIgnorePatterns: [
+        'node_modules/(?!(msw|@mswjs|until-async)/)',
+    ],
 
     moduleNameMapper: {
         '\\.(css|less|scss|sass)$': 'identity-obj-proxy',
