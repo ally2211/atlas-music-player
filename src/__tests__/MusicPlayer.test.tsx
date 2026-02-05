@@ -2,9 +2,14 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 import MusicPlayer from '../components/MusicPlayer';
 
-// Mock HTMLAudioElement methods
-const mockPlay = vi.fn().mockResolvedValue(undefined);
-const mockPause = vi.fn();
+// Mock HTMLAudioElement methods - dispatch events so onPlay/onPause run
+const mockPlay = vi.fn().mockImplementation(function (this: HTMLAudioElement) {
+    queueMicrotask(() => this.dispatchEvent(new Event('play')));
+    return Promise.resolve();
+});
+const mockPause = vi.fn().mockImplementation(function (this: HTMLAudioElement) {
+    this.dispatchEvent(new Event('pause'));
+});
 const mockSetProperty = vi.fn();
 
 Object.defineProperty(HTMLAudioElement.prototype, 'play', {
@@ -51,7 +56,7 @@ describe('MusicPlayer', () => {
         mockSetProperty.mockClear();
     });
 
-    it('should verify current song is first song in playlist by default after clicking it', async () => {
+    it('should verify current song is first song in playlist by default', async () => {
         render(<MusicPlayer />);
 
         // Wait for playlist to load from mock API
@@ -59,221 +64,124 @@ describe('MusicPlayer', () => {
             expect(screen.queryByText('Loading...')).not.toBeInTheDocument();
         });
 
-        // Verify playlist items are rendered from mock API data
-        expect(screen.getByText('No Song Selected')).toBeInTheDocument();
-        expect(screen.getByText('Unknown Artist')).toBeInTheDocument();
-
-        // Click on first song in playlist to make it current
-        const playlistItems = screen.getAllByText('No Song Selected');
-        const firstPlaylistItem = playlistItems.find(item =>
-            item.closest('.border') !== null
-        ) || playlistItems[0];
-
-        fireEvent.click(firstPlaylistItem);
-
-        // Wait for API call to fetch song details and verify first song becomes current
+        // Verify first song from mock API is current by default (no click needed)
         await waitFor(() => {
-            // Verify the first song title appears in the player area (CurrentlyPlaying component)
-            const songTitles = screen.getAllByText('No Song Selected');
-            expect(songTitles.length).toBeGreaterThan(0);
-            // Verify the first song artist appears
-            const artists = screen.getAllByText('Unknown Artist');
-            expect(artists.length).toBeGreaterThan(0);
+            expect(screen.getAllByText('Fake Song 1').length).toBeGreaterThan(0);
+            expect(screen.getAllByText('Fake Artist 1').length).toBeGreaterThan(0);
         }, { timeout: 3000 });
     });
 
     it('should verify play/pause can be toggled and UI changes', async () => {
         render(<MusicPlayer />);
 
-        // Wait for playlist to load
         await waitFor(() => {
             expect(screen.queryByText('Loading...')).not.toBeInTheDocument();
-        });
-
-        // Click on first song to select it
-        const firstSongItems = screen.getAllByText('No Song Selected');
-        fireEvent.click(firstSongItems[0]);
-
-        // Wait for song to load and auto-play
-        await waitFor(() => {
-            expect(mockPlay).toHaveBeenCalled();
+            expect(screen.getAllByText('Fake Song 1').length).toBeGreaterThan(0);
         }, { timeout: 3000 });
 
-        // Find the play/pause button
         const playButton = findPlayPauseButton();
         expect(playButton).toBeInTheDocument();
-
-        // Initially should show pause icon (since song is playing)
-        const svgBefore = playButton!.querySelector('svg[viewBox="0 0 48 48"]');
-        expect(svgBefore).toBeInTheDocument();
-
-        // Check if pause icon is visible (has two rects for pause)
-        const pauseRects = svgBefore!.querySelectorAll('rect[fill="currentColor"]');
-        expect(pauseRects.length).toBeGreaterThan(0);
-
-        // Click to pause
         fireEvent.click(playButton!);
 
+        await waitFor(() => expect(mockPlay).toHaveBeenCalled(), { timeout: 3000 });
+
         await waitFor(() => {
-            expect(mockPause).toHaveBeenCalled();
+            const svgEl = playButton!.querySelector('svg[viewBox="0 0 48 48"]');
+            const rects = svgEl!.querySelectorAll('rect');
+            expect(rects.length).toBeGreaterThanOrEqual(2);
         });
 
-        // Verify UI changed - should now show play icon
+        fireEvent.click(playButton!);
+        await waitFor(() => expect(mockPause).toHaveBeenCalled());
+
         await waitFor(() => {
             const svgAfter = playButton!.querySelector('svg[viewBox="0 0 48 48"]');
             const playPath = svgAfter!.querySelector('path[d="M18 15L32 24L18 33V15Z"]');
             expect(playPath).toBeInTheDocument();
         });
 
-        // Click again to play
         fireEvent.click(playButton!);
-
-        await waitFor(() => {
-            expect(mockPlay).toHaveBeenCalledTimes(2);
-        });
+        await waitFor(() => expect(mockPlay).toHaveBeenCalledTimes(2));
     });
 
     it('should verify forward changes song correctly', async () => {
         render(<MusicPlayer />);
 
-        // Wait for playlist to load
         await waitFor(() => {
             expect(screen.queryByText('Loading...')).not.toBeInTheDocument();
-        });
+            expect(screen.getAllByText('Fake Song 1').length).toBeGreaterThan(0);
+        }, { timeout: 3000 });
 
-        // Click on first song to select it
-        const firstSongItems = screen.getAllByText('No Song Selected');
-        fireEvent.click(firstSongItems[0]);
+        const forwardButton = findButtonByPath('M12 19L21 12L12 5V19Z');
+        expect(forwardButton).toBeInTheDocument();
+        fireEvent.click(forwardButton!);
 
-        // Wait for first song to load
         await waitFor(() => {
             expect(mockPlay).toHaveBeenCalled();
         }, { timeout: 3000 });
-
-        // Verify first song is current
-        await waitFor(() => {
-            const songTitles = screen.getAllByText('No Song Selected');
-            expect(songTitles.length).toBeGreaterThan(0);
-        });
-
-        // Find forward button (has path "M12 19L21 12L12 5V19Z")
-        const forwardButton = findButtonByPath('M12 19L21 12L12 5V19Z');
-        expect(forwardButton).toBeInTheDocument();
-
-        // Click forward button
-        fireEvent.click(forwardButton!);
-
-
     });
 
     it('should verify back changes song correctly', async () => {
         render(<MusicPlayer />);
 
-        // Wait for playlist to load
         await waitFor(() => {
             expect(screen.queryByText('Loading...')).not.toBeInTheDocument();
-        });
+            expect(screen.getAllByText('Fake Song 1').length).toBeGreaterThan(0);
+        }, { timeout: 3000 });
 
+        const forwardButton = findButtonByPath('M12 19L21 12L12 5V19Z');
+        fireEvent.click(forwardButton!);
+        await waitFor(() => expect(mockPlay).toHaveBeenCalled(), { timeout: 3000 });
 
-
-        // Find back button (has path "M11 19L2 12L11 5V19Z")
         const backButton = findButtonByPath('M11 19L2 12L11 5V19Z');
         expect(backButton).toBeInTheDocument();
-
-        // Click back button
         fireEvent.click(backButton!);
 
-        // Verify current song changed to first song
         await waitFor(() => {
-            const songTitles = screen.getAllByText('No Song Selected');
-            expect(songTitles.length).toBeGreaterThan(0);
-            const artists = screen.getAllByText('Unknown Artist');
-            expect(artists.length).toBeGreaterThan(0);
+            expect(screen.getAllByText('Fake Song 1').length).toBeGreaterThan(0);
+            expect(screen.getAllByText('Fake Artist 1').length).toBeGreaterThan(0);
         }, { timeout: 3000 });
     });
 
     it('should verify clicking song in playlist changes current song', async () => {
         render(<MusicPlayer />);
 
-        // Wait for playlist to load
         await waitFor(() => {
             expect(screen.queryByText('Loading...')).not.toBeInTheDocument();
-        });
-
-        // Verify all playlist items are rendered from mock API
-        expect(screen.getByText('No Song Selected')).toBeInTheDocument();
-
-        // Click on the third song in the playlist
-        const thirdSongItems = screen.getAllByText('No Song Selected');
-        const thirdSongItem = thirdSongItems.find(item =>
-            item.closest('.border') !== null
-        ) || thirdSongItems[0];
-
-        fireEvent.click(thirdSongItem);
-
-        // Verify current song changed to third song (wait for API call to complete)
-        await waitFor(() => {
-            // The song should appear in the player area after API call
-            const songTitles = screen.getAllByText('No Song Selected');
-            expect(songTitles.length).toBeGreaterThan(0);
-            // Verify artist also appears
-            const artists = screen.getAllByText('Unknown Artist');
-            expect(artists.length).toBeGreaterThan(0);
+            expect(screen.getAllByText('Fake Song 1').length).toBeGreaterThan(0);
         }, { timeout: 3000 });
 
-        // Verify the song started playing
+        const thirdSongItems = screen.getAllByText('Fake Song 3');
+        fireEvent.click(thirdSongItems[0]);
+
         await waitFor(() => {
+            expect(screen.getAllByText('Fake Song 3').length).toBeGreaterThan(0);
+            expect(screen.getAllByText('Fake Artist 3').length).toBeGreaterThan(0);
             expect(mockPlay).toHaveBeenCalled();
-        });
+        }, { timeout: 3000 });
     });
 
     it('should verify speed button toggles between settings correctly', async () => {
         render(<MusicPlayer />);
 
-        // Wait for playlist to load
         await waitFor(() => {
             expect(screen.queryByText('Loading...')).not.toBeInTheDocument();
-        });
-
-        // Click on first song to select it
-        const firstSongItems = screen.getAllByText('Painted in Blue');
-        fireEvent.click(firstSongItems[0]);
-
-        // Wait for song to load
-        await waitFor(() => {
-            expect(mockPlay).toHaveBeenCalled();
+            expect(screen.getAllByText('Fake Song 1').length).toBeGreaterThan(0);
         }, { timeout: 3000 });
 
-        // Find speed button (has path "M4 4h2v16H4z")
-        const speedButton = findButtonByPath('M4 4h2v16H4z');
+        const speedButton = findButtonByPath('M4 4h2v16H4zM18 4l-8.5 8L18 20V4z');
         expect(speedButton).toBeInTheDocument();
 
-        // Click speed button to change from 1x to 0.5x
         fireEvent.click(speedButton!);
+        await waitFor(() => expect(mockSetProperty).toHaveBeenCalledWith(2));
 
-        await waitFor(() => {
-            expect(mockSetProperty).toHaveBeenCalledWith(0.5);
-        });
-
-        // Click again to change from 0.5x to 1x
         fireEvent.click(speedButton!);
+        await waitFor(() => expect(mockSetProperty).toHaveBeenCalledWith(0.5));
 
-        await waitFor(() => {
-            expect(mockSetProperty).toHaveBeenCalledWith(1);
-        });
-
-        // Click again to change from 1x to 2x
         fireEvent.click(speedButton!);
+        await waitFor(() => expect(mockSetProperty).toHaveBeenCalledWith(1));
 
-        await waitFor(() => {
-            expect(mockSetProperty).toHaveBeenCalledWith(2);
-        });
-
-        // Click again to cycle back to 0.5x
         fireEvent.click(speedButton!);
-
-        await waitFor(() => {
-            expect(mockSetProperty).toHaveBeenCalledWith(0.5);
-        });
+        await waitFor(() => expect(mockSetProperty).toHaveBeenCalledWith(2));
     });
 });

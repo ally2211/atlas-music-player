@@ -77,6 +77,22 @@ const MusicPlayer: React.FC = () => {
                 const playlistData: Song[] = await response.json();
                 setPlaylist(playlistData);
                 setIsLoading(false);
+
+                // Set current song to first song in playlist by default
+                if (playlistData.length > 0) {
+                    const firstSong = playlistData[0];
+                    try {
+                        const songResponse = await fetch(`/api/v1/songs/${firstSong.id}`);
+                        if (songResponse.ok) {
+                            const songData: Song = await songResponse.json();
+                            setCurrentSong(songData);
+                        } else {
+                            setCurrentSong(firstSong);
+                        }
+                    } catch {
+                        setCurrentSong(firstSong);
+                    }
+                }
             } catch (error) {
                 setError(error instanceof Error ? error.message : 'Failed to fetch playlist');
                 setIsLoading(false);
